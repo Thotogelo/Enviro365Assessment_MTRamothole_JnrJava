@@ -6,9 +6,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Repository
 public interface FileRepository extends CrudRepository<File, Long> {
 
-//    public void store(MultipartFile file);
+    @Query("SELECT f FROM File f")
+    public List<File> getAllFiles();
+
+    public File getFileById(Long id);
 
 }

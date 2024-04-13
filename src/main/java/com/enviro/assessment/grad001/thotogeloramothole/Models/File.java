@@ -26,4 +26,8 @@ public class File {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "UploadDate", nullable = false)
     private Date uploadDate;
+
+    @Lob
+    @Column(name = "ProcessedData", nullable = false)
+    private byte[] processedData;
 }
