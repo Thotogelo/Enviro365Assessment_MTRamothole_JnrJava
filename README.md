@@ -11,3 +11,14 @@ each endpoint.
 performance.
 • Document the API endpoints, input parameters, response formats, and error
 handling procedures.
+
+THINGS TO NOTE
+1. All code should be written in a package
+2.com.enviro.assessment.grad001.yournameandsurname
+3. From a technical perspective, as per commonly accepted best practice, each
+record has a primary key called "id" that identifies it - this is a technical id, and
+4. Please model and implement the interface in the way YOU consider to be the
+best way from an Object Oriented perspective.
+5.As we will be accessing a real database as part of this exercise, please
+implement an in memory database (H2).
+6. Your submission must be a Springboot application with a rest endpoints
