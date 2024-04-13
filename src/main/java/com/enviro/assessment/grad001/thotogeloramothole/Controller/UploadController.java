@@ -1,6 +1,8 @@
 package com.enviro.assessment.grad001.thotogeloramothole.Controller;
 
 import com.enviro.assessment.grad001.thotogeloramothole.service.FileService;
+import com.enviro.assessment.grad001.thotogeloramothole.service.ProcessedDataService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,14 +12,21 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 
     private final FileService fileService;
+    private final ProcessedDataService processedDataService;
 
-    public UploadController(FileService fileService) {
+    public UploadController(FileService fileService, ProcessedDataService processedDataService) {
         this.fileService = fileService;
+        this.processedDataService = processedDataService;
     }
 
     @GetMapping
-    public String test() {
-        return "Upload controller working";
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("Upload controller working");
+    }
+
+    @GetMapping("/{fileid}")
+    public ResponseEntity<byte[]> getProcessedData(@PathVariable Long fileid) {
+        return ResponseEntity.ok(processedDataService.getProcessedDataById(fileid));
     }
 
     @PostMapping("/upload")
