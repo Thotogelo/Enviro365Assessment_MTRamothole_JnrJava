@@ -24,7 +24,7 @@ public class ProcessedData {
 
     @Lob
     @Column(name = "ProcessedData", nullable = false)
-    private String processedData;
+    private byte[] processedData;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "ProcessDate", nullable = false)
