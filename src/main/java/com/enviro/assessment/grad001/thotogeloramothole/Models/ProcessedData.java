@@ -26,7 +26,7 @@ public class ProcessedData {
     @Column(name = "ProcessedData", nullable = false)
     private String processedData;
 
-    //    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "ProcessDate", nullable = false)
     private Date processDate;
 

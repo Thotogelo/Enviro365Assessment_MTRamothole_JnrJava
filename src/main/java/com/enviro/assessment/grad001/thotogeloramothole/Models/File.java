@@ -17,6 +17,7 @@ import java.util.Date;
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "FILEID", nullable = false)
     private Long id;
 
     @Column(name = "FileName", nullable = false)
