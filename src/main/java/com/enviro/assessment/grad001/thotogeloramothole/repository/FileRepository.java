@@ -9,6 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Repository
 public interface FileRepository extends CrudRepository<File, Long> {
 
-    public void store(MultipartFile file);
+//    public void store(MultipartFile file);
 
 }
