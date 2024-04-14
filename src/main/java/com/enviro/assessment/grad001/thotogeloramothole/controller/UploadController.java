@@ -4,6 +4,8 @@ import com.enviro.assessment.grad001.thotogeloramothole.exception.FileProcessing
 import com.enviro.assessment.grad001.thotogeloramothole.exception.FileStorageException;
 import com.enviro.assessment.grad001.thotogeloramothole.model.File;
 import com.enviro.assessment.grad001.thotogeloramothole.service.FileService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/v1/api/file")
+@Tag(name = "Environment Data API", description = "Upload and retrieve environment data files")
 public class UploadController {
 
     private final FileService fileService;
@@ -30,16 +33,18 @@ public class UploadController {
 
 
     @GetMapping("/{fileid}")
+    @Operation(summary = "Get an environment data file by id", description = "Returns an environment data file by id")
     public ResponseEntity<?> getProcessedData(@PathVariable("fileid") Long fileid) {
         try {
             return ResponseEntity.ok(fileService.getFileById(fileid));
         } catch (FileProcessingException e) {
-            logger.error("Error getting processed data by id: " + fileid, e);
+            logger.error("Error getting processed data by id: {}", fileid, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while retrieving the file: " + e.getMessage());
         }
     }
 
     @GetMapping("/data")
+    @Operation(summary = "Get all environment data file", description = "Returns all environment data files")
     public ResponseEntity<?> getAllData() {
         try {
             List<File> files = fileService.getAllFiles();
@@ -51,6 +56,7 @@ public class UploadController {
     }
 
     @PostMapping("/upload")
+    @Operation(summary = "Upload an environment data file", description = "Upload an environment data file")
     public ResponseEntity<String> fileUpload(@RequestParam("file") MultipartFile file) {
 
         try {
