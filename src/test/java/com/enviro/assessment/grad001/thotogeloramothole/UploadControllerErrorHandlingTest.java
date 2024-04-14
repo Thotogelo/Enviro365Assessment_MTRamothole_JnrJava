@@ -38,4 +38,14 @@ class UploadControllerErrorHandlingTest {
                 .andExpect(content().string("File is empty, please upload a text file with contents"));
     }
 
+    @Test
+    void testLargeFileUpload() throws Exception {
+        byte[] largeFileContent = new byte[512001]; // size > 500KB
+        MockMultipartFile largeFile = new MockMultipartFile("file", "test.txt", "text/plain", largeFileContent);
+
+        mockMvc.perform(multipart("/v1/api/file/upload").file(largeFile))
+                .andExpect(status().isPayloadTooLarge())
+                .andExpect(content().string("File is too large, please upload a file smaller than 500kb."));
+    }
+
 }
