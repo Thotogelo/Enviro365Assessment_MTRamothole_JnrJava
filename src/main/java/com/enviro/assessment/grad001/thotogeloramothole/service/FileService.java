@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,17 +17,20 @@ import com.enviro.assessment.grad001.thotogeloramothole.model.File;
 import com.enviro.assessment.grad001.thotogeloramothole.repository.FileRepository;
 
 @Service
-public class FileService {
+public class FileService implements IFileService {
     private final FileRepository fileRepository;
+    private static final long MAX_FILE_SIZE = 512000; // 500H
 
     public FileService(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
     }
 
+    @Override
     public List<File> getAllFiles() {
         return fileRepository.findAll();
     }
 
+    @Override
     public File getFileById(Long id) {
         try {
             return fileRepository.getFileById(id);
@@ -34,11 +39,21 @@ public class FileService {
         }
     }
 
+    @Override
     public void storeFile(MultipartFile file) {
+        if (file.isEmpty()) {
+            throw new FileStorageException("File is empty, please upload a text file with contents");
+        }
+
+        if (file.getSize() > MAX_FILE_SIZE) {
+            throw new FileStorageException("File is too large, please upload a file smaller than 500kb.");
+        }
+
+        if (!MediaType.TEXT_PLAIN.equals(MediaType.parseMediaType(Objects.requireNonNull(file.getContentType())))) {
+            throw new FileStorageException("Please upload a text file.");
+        }
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-            if (file.isEmpty()) {
-                throw new FileStorageException("Failed to store empty file." + file.getOriginalFilename());
-            }
 
             StringBuilder data = new StringBuilder();
             String line;
