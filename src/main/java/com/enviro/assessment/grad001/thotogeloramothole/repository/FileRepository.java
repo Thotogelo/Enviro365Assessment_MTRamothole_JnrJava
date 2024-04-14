@@ -11,9 +11,7 @@ import java.util.List;
 @Repository
 public interface FileRepository extends CrudRepository<File, Long> {
 
-    @Query("SELECT f FROM File f")
-    public List<File> getAllFiles();
-
     public File getFileById(Long id);
 
+    List<File> getAllFiles();
 }

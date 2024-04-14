@@ -7,6 +7,7 @@ import com.enviro.assessment.grad001.thotogeloramothole.repository.FileRepositor
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -23,9 +24,9 @@ public class FileService {
         return fileRepository.getAllFiles();
     }
 
-    public byte[] getProcessedDataById(Long id) {
+    public File getFileById(Long id) {
         try {
-            return fileRepository.getFileById(id).getProcessedData();
+            return fileRepository.getFileById(id);
         } catch (Exception e) {
             throw new FileProcessingException("Error getting processed data by id: " + id, e);
         }
@@ -38,10 +39,12 @@ public class FileService {
             }
 
             File fileToStore = new File();
+            FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
 
             fileToStore.setFileName(file.getOriginalFilename());
-            fileToStore.setProcessedData(file.getBytes());
+            fileToStore.setProcessedData(fileInputStream.readAllBytes());
             fileToStore.setUploadDate(Date.from(new Date().toInstant()));
+
             fileRepository.save(fileToStore);
         } catch (IOException e) {
             throw new FileProcessingException("Failed to process file." + file.getOriginalFilename(), e);
