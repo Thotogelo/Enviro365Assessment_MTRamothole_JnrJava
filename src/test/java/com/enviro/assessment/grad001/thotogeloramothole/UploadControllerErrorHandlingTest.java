@@ -48,4 +48,13 @@ class UploadControllerErrorHandlingTest {
                 .andExpect(content().string("File is too large, please upload a file smaller than 500kb."));
     }
 
+    @Test
+    void testNonTextFileUpload() throws Exception {
+        MockMultipartFile nonTextFile = new MockMultipartFile("file", "test.jpg", "image/jpeg", "test data".getBytes());
+
+        mockMvc.perform(multipart("/v1/api/file/upload").file(nonTextFile))
+                .andExpect(status().isUnsupportedMediaType())
+                .andExpect(content().string("Please upload a text file."));
+    }
+
 }
