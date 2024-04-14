@@ -57,4 +57,15 @@ class UploadControllerTest {
 
         verify(fileService, times(1)).getFileById(1L);
     }
+
+    @Test
+    void testGetAllData() throws Exception {
+        when(fileService.getAllFiles()).thenReturn(Collections.singletonList(file));
+
+        mockMvc.perform(get("/v1/api/file/data"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[{\"fileName\":\"test.txt\",\"processedData\":\"test data\"}]"));
+
+        verify(fileService, times(1)).getAllFiles();
+    }
 }
