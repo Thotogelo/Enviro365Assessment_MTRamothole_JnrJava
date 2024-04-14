@@ -33,7 +33,6 @@ public class UploadController {
             List<File> files = fileService.getAllFiles();
             return ResponseEntity.ok(files);
         } catch (Exception e) {
-            // Log the exception, e.g. using a logger
             // Return an error response to the client
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while retrieving the data: " + e.getMessage());
         }

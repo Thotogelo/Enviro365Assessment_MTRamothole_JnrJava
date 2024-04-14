@@ -29,5 +29,5 @@ public class File {
 
     @Lob
     @Column(name = "ProcessedData", nullable = false)
-    private byte[] processedData;
+    private String processedData;
 }

@@ -7,8 +7,11 @@ import com.enviro.assessment.grad001.thotogeloramothole.repository.FileRepositor
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,14 +36,21 @@ public class FileService {
     }
 
     public void storeFile(MultipartFile file) {
-        try {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             if (file.isEmpty()) {
                 throw new FileStorageException("Failed to store empty file." + file.getOriginalFilename());
             }
 
+            StringBuilder data = new StringBuilder();
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                data.append(line);
+            }
+
+
             File fileToStore = new File();
             fileToStore.setFileName(file.getOriginalFilename());
-            fileToStore.setProcessedData(file.getBytes());
+            fileToStore.setProcessedData(data.toString());
             fileToStore.setUploadDate(Date.from(new Date().toInstant()));
 
             fileRepository.save(fileToStore);
