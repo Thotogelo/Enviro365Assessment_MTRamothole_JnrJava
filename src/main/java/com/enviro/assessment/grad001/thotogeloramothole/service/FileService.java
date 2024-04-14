@@ -39,10 +39,8 @@ public class FileService {
             }
 
             File fileToStore = new File();
-            FileInputStream fileInputStream = (FileInputStream) file.getInputStream();
-
             fileToStore.setFileName(file.getOriginalFilename());
-            fileToStore.setProcessedData(fileInputStream.readAllBytes());
+            fileToStore.setProcessedData(file.getBytes());
             fileToStore.setUploadDate(Date.from(new Date().toInstant()));
 
             fileRepository.save(fileToStore);
