@@ -1,14 +1,11 @@
 package com.enviro.assessment.grad001.thotogeloramothole.controller;
 
-import com.enviro.assessment.grad001.thotogeloramothole.exception.FileProcessingException;
-import com.enviro.assessment.grad001.thotogeloramothole.exception.FileStorageException;
 import com.enviro.assessment.grad001.thotogeloramothole.model.File;
 import com.enviro.assessment.grad001.thotogeloramothole.service.FileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
