@@ -48,10 +48,10 @@ class UploadControllerTest {
     }
 
     @Test
-    void testGetProcessedData() throws Exception {
+    void testGetFilesById() throws Exception {
         when(fileService.getFileById(1L)).thenReturn(file);
 
-        mockMvc.perform(get("/v1/api/file/1"))
+        mockMvc.perform(get("/v1/api/file/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"fileName\":\"test.txt\",\"processedData\":\"test data\"}"));
 
@@ -59,10 +59,10 @@ class UploadControllerTest {
     }
 
     @Test
-    void testGetAllData() throws Exception {
+    void testGetAllEnvironmentFiles() throws Exception {
         when(fileService.getAllFiles()).thenReturn(Collections.singletonList(file));
 
-        mockMvc.perform(get("/v1/api/file/data"))
+        mockMvc.perform(get("/v1/api/file/data").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[{\"fileName\":\"test.txt\",\"processedData\":\"test data\"}]"));
 
