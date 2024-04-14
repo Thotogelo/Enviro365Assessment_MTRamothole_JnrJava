@@ -41,7 +41,7 @@ public class FileService {
             }
 
             StringBuilder data = new StringBuilder();
-            String line = "";
+            String line;
             while ((line = reader.readLine()) != null) {
                 data.append(line);
             }
