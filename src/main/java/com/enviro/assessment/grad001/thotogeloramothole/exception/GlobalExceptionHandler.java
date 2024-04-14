@@ -14,7 +14,15 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(FileStorageException.class)
-    public ResponseEntity<String> handleFileStorageException(FileStorageException e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file." + e.getMessage());
+    public ResponseEntity<String> handleFileStorageException(FileStorageException ex) {
+        // Determine the status code based on the exception message
+        HttpStatus status = switch (ex.getMessage()) {
+            case "File is empty, please upload a text file with contents" -> HttpStatus.BAD_REQUEST;
+            case "File is too large, please upload a file smaller than 500kb." -> HttpStatus.PAYLOAD_TOO_LARGE;
+            case "Please upload a text file." -> HttpStatus.UNSUPPORTED_MEDIA_TYPE;
+            default -> HttpStatus.INTERNAL_SERVER_ERROR;
+        };
+
+        return new ResponseEntity<>(ex.getMessage(), status);
     }
 }
