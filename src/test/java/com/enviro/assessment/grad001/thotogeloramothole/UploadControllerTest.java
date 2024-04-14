@@ -1,7 +1,7 @@
 package com.enviro.assessment.grad001.thotogeloramothole;
 
 import com.enviro.assessment.grad001.thotogeloramothole.model.File;
-import com.enviro.assessment.grad001.thotogeloramothole.service.FileService;
+import com.enviro.assessment.grad001.thotogeloramothole.service.IFileService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ class UploadControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private FileService fileService;
+    private IFileService fileService;
     private File file;
 
     @BeforeEach
