@@ -21,7 +21,7 @@ public class FileService {
     }
 
     public List<File> getAllFiles() {
-        return fileRepository.getAllFiles();
+        return fileRepository.findAll();
     }
 
     public File getFileById(Long id) {
