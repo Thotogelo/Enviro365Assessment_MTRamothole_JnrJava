@@ -1,19 +1,18 @@
 package com.enviro.assessment.grad001.thotogeloramothole.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.enviro.assessment.grad001.thotogeloramothole.exception.FileProcessingException;
 import com.enviro.assessment.grad001.thotogeloramothole.exception.FileStorageException;
 import com.enviro.assessment.grad001.thotogeloramothole.model.File;
 import com.enviro.assessment.grad001.thotogeloramothole.repository.FileRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class FileService {
@@ -46,7 +45,6 @@ public class FileService {
             while ((line = reader.readLine()) != null) {
                 data.append(line);
             }
-
 
             File fileToStore = new File();
             fileToStore.setFileName(file.getOriginalFilename());

@@ -55,6 +55,6 @@ public class UploadController {
             return ResponseEntity.badRequest().body("Failed to upload file." + e.getMessage());
         }
 
-        return ResponseEntity.ok("File uploaded successfully");
+        return ResponseEntity.ok("File uploaded successfully.");
     }
 }
