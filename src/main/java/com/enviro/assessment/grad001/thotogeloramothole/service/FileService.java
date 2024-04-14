@@ -1,8 +1,8 @@
 package com.enviro.assessment.grad001.thotogeloramothole.service;
 
-import com.enviro.assessment.grad001.thotogeloramothole.Exception.FileProcessingException;
-import com.enviro.assessment.grad001.thotogeloramothole.Exception.FileStorageException;
-import com.enviro.assessment.grad001.thotogeloramothole.Models.File;
+import com.enviro.assessment.grad001.thotogeloramothole.exception.FileProcessingException;
+import com.enviro.assessment.grad001.thotogeloramothole.exception.FileStorageException;
+import com.enviro.assessment.grad001.thotogeloramothole.model.File;
 import com.enviro.assessment.grad001.thotogeloramothole.repository.FileRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

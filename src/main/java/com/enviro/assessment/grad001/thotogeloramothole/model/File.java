@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.thotogeloramothole.Models;
+package com.enviro.assessment.grad001.thotogeloramothole.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

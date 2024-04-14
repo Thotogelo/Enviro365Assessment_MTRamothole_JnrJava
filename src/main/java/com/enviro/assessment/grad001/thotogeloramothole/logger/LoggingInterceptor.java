@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.thotogeloramothole.Logger;
+package com.enviro.assessment.grad001.thotogeloramothole.logger;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

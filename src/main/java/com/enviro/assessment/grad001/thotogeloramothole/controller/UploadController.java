@@ -1,16 +1,13 @@
-package com.enviro.assessment.grad001.thotogeloramothole.Controller;
+package com.enviro.assessment.grad001.thotogeloramothole.controller;
 
-import com.enviro.assessment.grad001.thotogeloramothole.Models.File;
+import com.enviro.assessment.grad001.thotogeloramothole.model.File;
 import com.enviro.assessment.grad001.thotogeloramothole.service.FileService;
-import jakarta.annotation.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 

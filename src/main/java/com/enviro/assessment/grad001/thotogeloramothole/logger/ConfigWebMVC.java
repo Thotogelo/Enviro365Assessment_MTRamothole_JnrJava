@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.thotogeloramothole.Logger;
+package com.enviro.assessment.grad001.thotogeloramothole.logger;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
