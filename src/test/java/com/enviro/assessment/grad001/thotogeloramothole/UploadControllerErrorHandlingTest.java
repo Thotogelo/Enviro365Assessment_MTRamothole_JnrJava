@@ -74,7 +74,7 @@ class UploadControllerErrorHandlingTest {
     @Test
     void shouldThrowExceptionWhenUploadingNonTextFile() throws Exception {
         MockMultipartFile nonTextFile = new MockMultipartFile("file", "test.jpg", "image/jpeg", "test data".getBytes());
-        String message = "Please upload a text file.";
+        String message = "File is not a text file, please upload a text file.";
 
         doThrow(new FileStorageException(message))
                 .when(fileService).storeFile(nonTextFile);

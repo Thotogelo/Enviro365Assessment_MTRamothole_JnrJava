@@ -66,7 +66,7 @@ class FileServiceTest {
             fileService.storeFile(nonTextFile);
         });
 
-        String expectedMessage = "Please upload a text file.";
+        String expectedMessage = "File is not a text file, please upload a text file.";
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
