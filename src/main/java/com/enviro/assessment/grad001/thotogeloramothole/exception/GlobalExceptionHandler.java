@@ -29,10 +29,4 @@ public class GlobalExceptionHandler {
         // Returns a response with the determined status code and the exception message
         return new ResponseEntity<>(ex.getMessage(), status);
     }
-
-    @ExceptionHandler(ObjectNotFoundException.class)
-    public ResponseEntity<String> handleObjectNotFoundException(ObjectNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
 }

@@ -22,7 +22,7 @@ class FileServiceTest {
      * It creates a mock empty file and expects a RuntimeException with a specific error message.
      */
     @Test
-    void shouldThrowExceptionWhenUploadingEmptyFile() {
+    void shouldThrowExceptionWhenProcessingEmptyFile() {
         MockMultipartFile emptyFile = new MockMultipartFile("file", "", "text/plain", "".getBytes());
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
@@ -40,7 +40,7 @@ class FileServiceTest {
      * It creates a mock large file and expects a RuntimeException with a specific error message.
      */
     @Test
-    void shouldThrowExceptionWhenUploadingLargeFile() {
+    void shouldThrowExceptionWhenProcessingLargeFile() {
         byte[] largeFileContent = new byte[512001]; // size > 500KB
         MockMultipartFile largeFile = new MockMultipartFile("file", "test.txt", "text/plain", largeFileContent);
 
@@ -59,7 +59,7 @@ class FileServiceTest {
      * It creates a mock non-text file and expects a RuntimeException with a specific error message.
      */
     @Test
-    void shouldThrowExceptionWhenUploadingNonTextFile() {
+    void shouldThrowExceptionWhenProcessingNonTextFile() {
         MockMultipartFile nonTextFile = new MockMultipartFile("file", "test.jpg", "image/jpeg", "test data".getBytes());
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
