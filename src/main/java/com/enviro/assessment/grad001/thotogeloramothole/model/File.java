@@ -17,17 +17,17 @@ import java.util.Date;
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "FILEID", nullable = false)
+    @Column(name = "FILE_ID", nullable = false)
     private Long id;
 
-    @Column(name = "FileName", nullable = false)
+    @Column(name = "File_Name", nullable = false)
     private String fileName;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "UploadDate", nullable = false)
+    @Column(name = "Upload_Date", nullable = false)
     private Date uploadDate;
 
     @Lob
-    @Column(name = "ProcessedData", nullable = false)
+    @Column(name = "Processed_Data", nullable = false)
     private String processedData;
 }
