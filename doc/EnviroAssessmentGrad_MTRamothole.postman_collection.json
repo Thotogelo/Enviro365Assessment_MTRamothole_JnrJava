@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "5749d8d0-f1aa-4bfc-bf6d-5b6acd45e389",
+		"name": "EnviroAssessmentGrad_MTRamothole",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23432227"
+	},
+	"item": [
+		{
+			"name": "Get file by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/api/file/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"api",
+						"file",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1eef9cd2-ef84-4ae0-b1ce-fbb9ce4da5cc"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/api/file/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"api",
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all data files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/api/file/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"api",
+						"file",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
