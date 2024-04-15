@@ -1,10 +1,9 @@
 package com.enviro.assessment.grad001.thotogeloramothole;
 
-import com.enviro.assessment.grad001.thotogeloramothole.service.FileService;
 import com.enviro.assessment.grad001.thotogeloramothole.service.IFileService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class FileServiceTest {
 
-    @Autowired
+    @MockBean
     private IFileService fileService;
 
     @Test

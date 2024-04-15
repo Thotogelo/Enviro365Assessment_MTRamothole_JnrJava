@@ -22,9 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class UploadControllerTest {
 
-    @Autowired
+    @MockBean
     private MockMvc mockMvc;
-
+    
     @MockBean
     private IFileService fileService;
     private File file;
@@ -50,8 +50,8 @@ class UploadControllerTest {
     @Test
     void testGetFilesById() throws Exception {
         when(fileService.getFileById(1L)).thenReturn(file);
-
-        mockMvc.perform(get("/v1/api/file/1").contentType(MediaType.APPLICATION_JSON))
+        
+        mockMvc.perform(get("/v1/api/file/{fileid}", 1).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"fileName\":\"test.txt\",\"processedData\":\"test data\"}"));
 
