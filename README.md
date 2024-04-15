@@ -68,7 +68,8 @@ when the application is stopped.
 
 ## Testing
 
-"ROBUST" Unit tests have been written to ensure the functionality, reliability, and performance of the API endpoints. To run the
+"ROBUST" Unit tests have been written to ensure the functionality, reliability, and performance of the API endpoints. To
+run the
 tests, navigate to the project directory and run the command `mvn test`.
 
 ### Test Coverage
@@ -80,3 +81,16 @@ The tests cover a variety of scenarios, including:
 - Uploading a non-text file
 - Retrieving a file by its ID
 - Retrieving all files
+
+##NOTE
+
+Upload File Request:
+When using postman to test the API, please ensure that the file is uploaded as form-data with the key `file`.
+The header should be set to `Content-Type: multipart/form-data`.
+
+Get file by id:
+When using postman to test the API, please ensure that the file id is passed as a path parameter in the URL.
+When using postman ensure that the Headers are set to `Content-Type: application/json`
+
+Get all data files
+When using postman ensure that the Headers are set to `Content-Type: application/json`

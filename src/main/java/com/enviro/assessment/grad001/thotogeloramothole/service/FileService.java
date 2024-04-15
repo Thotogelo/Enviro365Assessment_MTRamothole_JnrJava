@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import com.enviro.assessment.grad001.thotogeloramothole.exception.ObjectNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,16 +28,17 @@ public class FileService implements IFileService {
 
     @Override
     public List<File> getAllFiles() {
-        return fileRepository.findAll();
+        List<File> files = fileRepository.findAll();
+        if (files.isEmpty()) {
+            throw new ObjectNotFoundException("No files found.");
+        }
+        return files;
     }
 
     @Override
     public File getFileById(Long id) {
-        try {
-            return fileRepository.getFileById(id);
-        } catch (Exception e) {
-            throw new FileProcessingException("Error getting processed data by id: " + id, e);
-        }
+        return fileRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("File with id " + id + " not found."));
     }
 
     @Override
@@ -50,7 +52,7 @@ public class FileService implements IFileService {
         }
 
         if (!MediaType.TEXT_PLAIN.equals(MediaType.parseMediaType(Objects.requireNonNull(file.getContentType())))) {
-            throw new FileStorageException("Please upload a text file.");
+            throw new FileStorageException("File is not a text file, please upload a text file.");
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {

@@ -10,7 +10,13 @@
 			"name": "Get file by id",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/v1/api/file/1",
 					"protocol": "http",
@@ -39,7 +45,32 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "postman-cloud:///1eef9cd2-ef84-4ae0-b1ce-fbb9ce4da5cc"
+							"src": "postman-cloud:///1eef9cd2-ef84-4ae0-b1ce-fbb9ce4da5cc",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1eefa41b-7972-4be0-bfc6-0cd9e8c1e667",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1eefa85d-2bd2-46b0-a151-77ef9dd8d6c1",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1eefb1cc-4f85-4850-9892-5c8090e384f0",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/ramot/IdeaProjects/EnviroAssessmentGrad_MTRamothole/doc/empty",
+							"disabled": true
 						}
 					]
 				},
@@ -64,9 +95,15 @@
 			"name": "Get all data files",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8080/v1/api/file/all",
+					"raw": "http://localhost:8080/v1/api/file/data",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -76,7 +113,7 @@
 						"v1",
 						"api",
 						"file",
-						"all"
+						"data"
 					]
 				}
 			},

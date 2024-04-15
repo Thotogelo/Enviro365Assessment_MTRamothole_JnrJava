@@ -22,11 +22,17 @@ public class GlobalExceptionHandler {
         HttpStatus status = switch (ex.getMessage()) {
             case "File is empty, please upload a text file with contents" -> HttpStatus.BAD_REQUEST;
             case "File is too large, please upload a file smaller than 500kb." -> HttpStatus.PAYLOAD_TOO_LARGE;
-            case "Please upload a text file." -> HttpStatus.UNSUPPORTED_MEDIA_TYPE;
+            case "File is not a text file, please upload a text file." -> HttpStatus.UNSUPPORTED_MEDIA_TYPE;
             default -> HttpStatus.INTERNAL_SERVER_ERROR;
         };
 
         // Returns a response with the determined status code and the exception message
         return new ResponseEntity<>(ex.getMessage(), status);
     }
+
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity<String> handleObjectNotFoundException(ObjectNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 }
