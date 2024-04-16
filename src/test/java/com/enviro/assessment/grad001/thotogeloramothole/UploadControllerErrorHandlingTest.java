@@ -40,6 +40,7 @@ class UploadControllerErrorHandlingTest {
         doThrow(new FileStorageException(message))
                 .when(fileService).storeFile(emptyFile);
 
+                
         // Performing a POST request to the upload endpoint with the empty file
         // Expecting a 400 Bad Request status and the error message
         mockMvc.perform(multipart("/v1/api/file/upload").file(emptyFile))
