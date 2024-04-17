@@ -32,8 +32,7 @@ public class UploadController {
     @GetMapping(value = "/data", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Get all environment data file", description = "Returns all environment data files")
     public ResponseEntity<List<File>> getAllEnvironmentFiles() {
-        List<File> files = fileService.getAllFiles();
-        return ResponseEntity.ok(files);
+        return ResponseEntity.ok(fileService.getAllFiles());
     }
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
