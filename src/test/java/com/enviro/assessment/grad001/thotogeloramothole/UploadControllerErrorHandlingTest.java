@@ -45,7 +45,7 @@ class UploadControllerErrorHandlingTest {
         // Expecting a 400 Bad Request status and the error message
         mockMvc.perform(multipart("/v1/api/file/upload").file(emptyFile))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string(message));
+                .andExpect(content().json("{\"status\":400,\"detail\":\""+message+"\"}"));
     }
 
     /**
@@ -65,7 +65,7 @@ class UploadControllerErrorHandlingTest {
         // Expecting a 413 Payload Too Large status and the error message
         mockMvc.perform(multipart("/v1/api/file/upload").file(largeFile))
                 .andExpect(status().isPayloadTooLarge())
-                .andExpect(content().string(message));
+                .andExpect(content().json("{\"status\":413,\"detail\":\""+message+"\"}"));
     }
 
     /**
@@ -84,6 +84,6 @@ class UploadControllerErrorHandlingTest {
         // Expecting a 415 Unsupported Media Type status and the error message
         mockMvc.perform(multipart("/v1/api/file/upload").file(nonTextFile))
                 .andExpect(status().isUnsupportedMediaType())
-                .andExpect(content().string(message));
+                .andExpect(content().json("{\"status\":415,\"detail\":\""+message+"\"}"));
     }
 }
