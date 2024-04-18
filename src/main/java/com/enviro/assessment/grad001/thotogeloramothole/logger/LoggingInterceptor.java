@@ -11,16 +11,18 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class LoggingInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(LoggingInterceptor.class);
 
-//    Intercept and Log request
+    //    Intercept and Log request
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
-        logger.info("Received request: {} {} from {}", request.getMethod(), request.getRequestURI(), request.getRemoteAddr());
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        logger.info("Received request: {} {} from {}", request.getMethod(), request.getRequestURI(),
+                request.getRemoteAddr());
         return true;
     }
 
-//    Intercept and Log responses
+    //    Intercept and Log responses
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex){
-        logger.info("Sent response: {} {} with status {} and exception {}", request.getMethod(), request.getRequestURI(), response.getStatus(), ex);
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        logger.info("Sent response: {} {} with status {} and exception {}", request.getMethod(),
+                request.getRequestURI(), response.getStatus(), ex);
     }
 }
