@@ -12,7 +12,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(FileProcessingException.class)
     public ProblemDetail handleFileProcessingException(FileProcessingException e) {
         // Returns a response with a status of 500 and a message describing the error
-        return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred: " + e.getMessage());// ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR,
+                "An error occurred: " + e.getMessage());
     }
 
     // Handles exceptions related to file storage
