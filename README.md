@@ -28,6 +28,12 @@ The API consists of several endpoints to facilitate file upload, data processing
 Detailed documentation for each endpoint, including request and response formats, will be provided in the subsequent
 sections.
 
+
+![img.png](img.png)
+
+
+
+
 ### Get an environment data file by id
 
 - Method: GET
@@ -94,8 +100,3 @@ When using postman ensure that the Headers are set to `Content-Type: application
 
 Get all data files
 When using postman ensure that the Headers are set to `Content-Type: application/json`
-
-
-
-
-![img.png](img.png)
