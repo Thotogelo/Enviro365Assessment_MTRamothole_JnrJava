@@ -1,7 +1,7 @@
 package com.enviro.assessment.grad001.thotogeloramothole;
 
 import com.enviro.assessment.grad001.thotogeloramothole.exception.FileStorageException;
-import com.enviro.assessment.grad001.thotogeloramothole.service.IFileService;
+import com.enviro.assessment.grad001.thotogeloramothole.service.FileService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -26,7 +26,7 @@ class UploadControllerErrorHandlingTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private IFileService fileService;
+    private FileService fileService;
 
     /**
      * This test case checks if the upload endpoint throws an exception when an empty file is uploaded.

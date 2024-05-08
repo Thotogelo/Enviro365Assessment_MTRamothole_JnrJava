@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 import org.springframework.http.MediaType;
@@ -17,7 +16,7 @@ import com.enviro.assessment.grad001.thotogeloramothole.model.File;
 import com.enviro.assessment.grad001.thotogeloramothole.repository.FileRepository;
 
 @Service
-public class FileService implements IFileService {
+public class FileService {
     private final FileRepository fileRepository;
     private static final long MAX_FILE_SIZE = 512000; // 500kb
 
@@ -25,12 +24,10 @@ public class FileService implements IFileService {
         this.fileRepository = fileRepository;
     }
 
-    @Override
-    public List<File> getAllFiles() {
+    public Iterable<File> getAllFiles() {
         return fileRepository.findAll();
     }
 
-    @Override
     public File getFileById(Long id) {
         try {
             return fileRepository.getFileById(id);
@@ -39,7 +36,6 @@ public class FileService implements IFileService {
         }
     }
 
-    @Override
     public void storeFile(MultipartFile file) {
         if (file.isEmpty()) {
             throw new FileStorageException("File is empty, please upload a text file with contents");
