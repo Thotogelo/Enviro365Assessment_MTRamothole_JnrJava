@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/v1/api/file")
@@ -23,7 +25,8 @@ public class UploadController {
     @GetMapping(value = "/{fileid}")
     @Operation(summary = "Get an environment data file by id")
     public ResponseEntity<File> getFilesById(@PathVariable("fileid") Long fileid) {
-        return ResponseEntity.ok(fileService.getFileById(fileid));
+        Optional<File> file = fileService.getFileById(fileid);
+        return file.isPresent() ? ResponseEntity.ok(file.get()) : ResponseEntity.notFound().build();
     }
 
     @GetMapping(value = "/data")

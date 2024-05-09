@@ -13,6 +13,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -64,7 +65,7 @@ class UploadControllerTest {
      */
     @Test
     void shouldRetrieveFileById() throws Exception {
-        when(fileService.getFileById(1L)).thenReturn(file);
+        when(fileService.getFileById(1L)).thenReturn(Optional.ofNullable(file));
 
         mockMvc.perform(get("/v1/api/file/{fileid}", 1).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

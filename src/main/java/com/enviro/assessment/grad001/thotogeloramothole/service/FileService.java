@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,9 @@ public class FileService {
         return fileRepository.findAll();
     }
 
-    public File getFileById(Long id) {
+    public Optional<File> getFileById(Long id) {
         try {
-            return fileRepository.getFileById(id);
+            return fileRepository.findById(id);
         } catch (Exception e) {
             throw new FileProcessingException("Error getting processed data by id: " + id, e);
         }
