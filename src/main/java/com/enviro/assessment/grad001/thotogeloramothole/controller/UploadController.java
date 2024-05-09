@@ -21,20 +21,20 @@ public class UploadController {
         this.fileService = fileService;
     }
 
-    @GetMapping(value = "/{fileid}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Get an environment data file by id", description = "Returns an environment data file by id")
+    @GetMapping(value = "/{fileid}")
+    @Operation(summary = "Get an environment data file by id")
     public ResponseEntity<File> getFilesById(@PathVariable("fileid") Long fileid) {
         return ResponseEntity.ok(fileService.getFileById(fileid));
     }
 
-    @GetMapping(value = "/data", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Get all environment data file", description = "Returns all environment data files")
+    @GetMapping(value = "/data")
+    @Operation(summary = "Get all environment data file")
     public ResponseEntity<Iterable<File>> getAllEnvironmentFiles() {
         return ResponseEntity.ok(fileService.getAllFiles());
     }
 
-    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Upload an environment data file", description = "Upload an environment data file")
+    @PostMapping(value = "/upload")
+    @Operation(summary = "Upload an environment data file")
     public ResponseEntity<String> fileUpload(@RequestParam("file") MultipartFile file) {
         fileService.storeFile(file);
         return ResponseEntity.ok("File uploaded successfully.");
