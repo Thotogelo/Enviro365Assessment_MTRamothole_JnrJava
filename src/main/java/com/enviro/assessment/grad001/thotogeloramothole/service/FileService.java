@@ -30,11 +30,7 @@ public class FileService {
     }
 
     public Optional<File> getFileById(Long id) {
-        try {
-            return fileRepository.findById(id);
-        } catch (Exception e) {
-            throw new FileProcessingException("Error getting processed data by id: " + id, e);
-        }
+        return fileRepository.findById(id);
     }
 
     public void storeFile(MultipartFile file) {
