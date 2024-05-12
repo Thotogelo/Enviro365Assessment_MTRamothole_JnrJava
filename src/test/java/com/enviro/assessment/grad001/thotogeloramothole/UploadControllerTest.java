@@ -65,7 +65,8 @@ class UploadControllerTest {
      */
     @Test
     void shouldRetrieveFileById() throws Exception {
-        when(fileService.getFileById(1L)).thenReturn(Optional.ofNullable(file));
+        when(fileService.getFileById(1L)).thenReturn
+                (Optional.ofNullable(file));
 
         mockMvc.perform(get("/v1/api/file/{fileid}", 1).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

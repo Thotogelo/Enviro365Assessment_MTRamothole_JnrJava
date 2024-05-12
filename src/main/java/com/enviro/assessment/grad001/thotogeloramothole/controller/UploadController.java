@@ -23,20 +23,17 @@ public class UploadController {
     }
 
     @GetMapping(value = "/{fileid}")
-    @Operation(summary = "Get an environment data file by id")
     public ResponseEntity<File> getFilesById(@PathVariable("fileid") Long fileid) {
         Optional<File> file = fileService.getFileById(fileid);
         return file.isPresent() ? ResponseEntity.ok(file.get()) : ResponseEntity.notFound().build();
     }
 
     @GetMapping(value = "/data")
-    @Operation(summary = "Get all environment data file")
     public ResponseEntity<Iterable<File>> getAllEnvironmentFiles() {
         return ResponseEntity.ok(fileService.getAllFiles());
     }
 
     @PostMapping(value = "/upload")
-    @Operation(summary = "Upload an environment data file")
     public ResponseEntity<String> fileUpload(@RequestParam("file") MultipartFile file) {
         fileService.storeFile(file);
         return ResponseEntity.ok("File uploaded successfully.");
