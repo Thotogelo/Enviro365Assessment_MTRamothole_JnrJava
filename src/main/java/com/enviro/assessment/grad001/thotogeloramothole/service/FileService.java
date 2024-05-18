@@ -1,20 +1,22 @@
 package com.enviro.assessment.grad001.thotogeloramothole.service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Optional;
-
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.enviro.assessment.grad001.thotogeloramothole.exception.FileProcessingException;
 import com.enviro.assessment.grad001.thotogeloramothole.exception.FileStorageException;
 import com.enviro.assessment.grad001.thotogeloramothole.model.File;
 import com.enviro.assessment.grad001.thotogeloramothole.repository.FileRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class FileService {
@@ -25,15 +27,17 @@ public class FileService {
         this.fileRepository = fileRepository;
     }
 
-    public Iterable<File> getAllFiles() {
-        return fileRepository.findAll();
+    public ResponseEntity<Iterable<File>> getAllFiles() {
+        LinkedList<File> files = (LinkedList<File>) fileRepository.findAll();
+        return (files.isEmpty()) ? ResponseEntity.noContent().build() : ResponseEntity.ok(files);
     }
 
-    public Optional<File> getFileById(Long id) {
-        return fileRepository.findById(id);
+    public ResponseEntity<File> getFileById(Long id) {
+        Optional<File> file = fileRepository.findById(id);
+        return file.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public void storeFile(MultipartFile file) {
+    public ResponseEntity<File> storeFile(MultipartFile file) {
         if (file.isEmpty()) {
             throw new FileStorageException("File is empty, please upload a text file with contents");
         }
@@ -60,6 +64,7 @@ public class FileService {
             fileToStore.setUploadDate(Date.from(new Date().toInstant()));
 
             fileRepository.save(fileToStore);
+            return new ResponseEntity<>(fileToStore, HttpStatus.OK);
         } catch (IOException e) {
             throw new FileProcessingException("Failed to process file." + file.getOriginalFilename(), e);
         }
