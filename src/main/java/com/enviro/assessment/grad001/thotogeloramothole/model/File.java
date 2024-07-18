@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Setter
 @Getter
@@ -18,7 +19,7 @@ public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FILE_ID", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "File_Name", nullable = false)
     private String fileName;
@@ -30,4 +31,10 @@ public class File {
     @Lob
     @Column(name = "Processed_Data", nullable = false)
     private String processedData;
+
+    public File(RequestFileDTO requestFileDTO) {
+        this.setId(UUID.randomUUID());
+        this.setUploadDate(Date.from(new Date().toInstant()));
+        this.setFileName(requestFileDTO.requestFile().getOriginalFilename());
+    }
 }
